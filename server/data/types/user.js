@@ -19,8 +19,8 @@ input LoginInput{
 }
 """ mutations """
 type  Mutation {
-    signIn(input: UserInput) :User,
-    signUp(input: UserInput) :User,
+    SignUp(input: UserInput) :User,
+    UpdateUser(input: UserInput) :User,
     Login(input: LoginInput) :User
 }
 type Query{
