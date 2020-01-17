@@ -1,0 +1,38 @@
+{
+  "name": "graphql-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon ./server/index.js --exec babel-node -e js",
+    "clean": "rm -rf build && mkdir build && cp -r package.json build/package.json && cp -r server/.env.info.json build/.env.info.json",
+    "build-server": "babel -d ./build ./server/ -s",
+    "build": "npm run clean && npm run build-server"
+  },
+  "author": "eduardoxlau <sanchezpazrafael@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-server": "^2.4.0",
+    "apollo-server-express": "^2.4.0",
+    "base64-to-image": "^1.0.2",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-graphql": "^0.7.1",
+    "graphql": "^14.1.1",
+    "graphql-import": "^0.7.1",
+    "graphql-subscriptions": "^1.0.0",
+    "graphql-tools": "^4.0.4",
+    "is-base64": "^0.1.0",
+    "merge-graphql-schemas": "^1.5.8",
+    "mongoose": "^5.4.11"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "build-css": "^0.2.0",
+    "nodemon": "^1.18.9"
+  }
+}
