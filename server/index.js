@@ -16,6 +16,7 @@ import typeDefs from './data/schema';
 //********************* RESOLVERS *************+ */
 //********************************************+* */
 import { resolvers  as resolversUser} from "./data/resolvers/user";
+import { resolvers  as resolversMessage} from "./data/resolvers/message";
 
 //********************************************+* */
 //********************* END RESOLVERS ********** */
@@ -23,7 +24,7 @@ import { resolvers  as resolversUser} from "./data/resolvers/user";
 const app = express();
 const server=new ApolloServer({
   typeDefs:typeDefs,
-  resolvers:mergeResolvers([resolversUser]),
+  resolvers:mergeResolvers([resolversUser,resolversMessage]),
 })
 app.use(express.static('public'));
 app.use(bodyParser.json({limit: '100mb', extended: true}))

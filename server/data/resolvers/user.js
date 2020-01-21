@@ -20,7 +20,8 @@ export const resolvers = {
         Login:(root, { input })=>{
             return new Promise((resolve, rejects) => {
                 User.findOne({ nickname: input.nickname.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""), password: input.password }, (error, user) => {
-                    resolve(user)
+                    if(user)resolve(user)
+                    else rejects(null)
                 })
             })
         },
@@ -28,7 +29,7 @@ export const resolvers = {
             return new Promise((resolve, rejects) => {
                 let data={//create object to save data user
                     names:input.names,
-                    nickname:input.nickname,
+                    nickname:input.nickname.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""),
                     password:input.password
                 }
                 if(isBase64(input.photo, {mime: true})){//check if image is base64 or is null whatever
@@ -45,7 +46,8 @@ export const resolvers = {
                 const user = User(data)
                 user.id = user._id;
                 user.save((error) => {
-                    resolve(user)
+                    if(error) rejects(null)
+                    else resolve(user)
                 })
             })
         },
@@ -68,6 +70,8 @@ export const resolvers = {
                     }
                 }
                 User.findOneAndUpdate({ _id: input.id }, data, { new: true }, (error, user) => {
+                    console.log(user)
+                    user.id=user._id
                     resolve(user)
                 })
             })
