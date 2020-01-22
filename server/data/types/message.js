@@ -2,8 +2,8 @@ export default
 `type Message{
     id:ID
     text:String
-    user:ID
-    owner:ID
+    user:User
+    owner:User
     type:String
 }
 type Response{
@@ -22,7 +22,10 @@ input MessageInput{
 }
 """ mutations """
 type  Mutation {
-    createMessage(input: MessageInput):Response,
+    createMessage(input: MessageInput):Message,
+}
+type Subscription{
+    Listen(input: MessageInput):Message
 }
 type Query{
     getMessage(input: MessageInput):[Message]

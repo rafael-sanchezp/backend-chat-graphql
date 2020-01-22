@@ -31,8 +31,10 @@ app.use(bodyParser.json({limit: '100mb', extended: true}))
 app.use(bodyParser.urlencoded({limit: '100mb', extended: true}))
 server.applyMiddleware({app})
 const httpServer = createServer(app);
+server.installSubscriptionHandlers(httpServer);
 httpServer.listen(port,()=>{
   console.log(`el servidor is work in  ${server.graphqlPath}`)
+  console.log(`🚀 Subscriptions ready at ws://localhost 3000:${server.subscriptionsPath}`)
 
 })
 

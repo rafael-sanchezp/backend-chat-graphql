@@ -24,5 +24,5 @@ type  Mutation {
     Login(input: LoginInput) :User
 }
 type Query{
-    getUsers:[User],
+    getUsers(id:ID):[User],
 }`

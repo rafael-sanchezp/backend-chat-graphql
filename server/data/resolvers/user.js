@@ -7,9 +7,9 @@ var node_env = process.env.NODE_ENV || 'development';
 const RUTEIMAGES = envJSON[node_env].RUTEIMAGES;
 export const resolvers = {
     Query: {
-        getUsers: () => {
+        getUsers: (root, { id }) => {
             return new Promise((resolve, rejects) => {
-                User.find({}, (error, users) => {
+                User.find({_id:{ $ne: id }}, (error, users) => {
                     console.log(users)
                     resolve(users)
                 });
@@ -35,7 +35,7 @@ export const resolvers = {
                 if(isBase64(input.photo, {mime: true})){//check if image is base64 or is null whatever
                     let image= (input.photo.toString()).replace(/(\r\n|\n|\r)/gm,"") 
                     let name_image=new Date().getTime();
-                    data.photo=`${name_image}.png`;
+                    data.photo=`http://35.224.179.43/public/${name_image}.png`;
                     var optionalObj = { 'fileName': name_image, 'type': 'png' };
                     try {
                         base64ToImage(image, RUTEIMAGES, optionalObj);
@@ -61,7 +61,7 @@ export const resolvers = {
                 if(isBase64(input.photo, {mime: true})){//check if image is base64 or is null whatever
                     let image= (input.photo.toString()).replace(/(\r\n|\n|\r)/gm,"") 
                     let name_image=new Date().getTime();
-                    data.photo=`${name_image}.png`;
+                    data.photo=`http://35.224.179.43/public/${name_image}.png`;
                     var optionalObj = { 'fileName': name_image, 'type': 'png' };
                     try {
                         base64ToImage(image, RUTEIMAGES, optionalObj);
