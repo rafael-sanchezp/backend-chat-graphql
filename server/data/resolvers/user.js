@@ -32,8 +32,8 @@ export const resolvers = {
                     nickname:input.nickname.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""),
                     password:input.password
                 }
-                if(isBase64(input.photo, {mime: true})){//check if image is base64 or is null whatever
-                    let image= (input.photo.toString()).replace(/(\r\n|\n|\r)/gm,"") 
+                let image= (input.photo.toString()).replace(/(\r\n|\n|\r)/gm,"") 
+                if(isBase64(image, {mime: true})){//check if image is base64 or is null whatever
                     let name_image=new Date().getTime();
                     data.photo=`http://35.224.179.43/public/${name_image}.png`;
                     var optionalObj = { 'fileName': name_image, 'type': 'png' };
@@ -58,8 +58,8 @@ export const resolvers = {
                     nickname:input.nickname,
                     password:input.password
                 }
-                if(isBase64(input.photo, {mime: true})){//check if image is base64 or is null whatever
-                    let image= (input.photo.toString()).replace(/(\r\n|\n|\r)/gm,"") 
+                let image= (input.photo.toString()).replace(/(\r\n|\n|\r)/gm,"") 
+                if(isBase64(image, {mime: true})){//check if image is base64 or is null whatever
                     let name_image=new Date().getTime();
                     data.photo=`http://35.224.179.43/public/${name_image}.png`;
                     var optionalObj = { 'fileName': name_image, 'type': 'png' };
